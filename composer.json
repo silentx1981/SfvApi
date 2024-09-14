@@ -1,5 +1,5 @@
 {
-    "name": "silentx1981/sfv-api",
+    "name": "silentx1981/sfvapi",
     "autoload": {
       "psr-4": {
           "SfvApi\\": "src/"

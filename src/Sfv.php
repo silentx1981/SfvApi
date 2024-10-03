@@ -2,24 +2,21 @@
 
 namespace SfvApi;
 
+use SfvApi\Auth\Auth;
+use SfvApi\ClubSchedule\Schedule;
+
 class Sfv
 {
-    /**
-     * @param array<string, string> $credentials
-     */
-    public function __construct(array $credentials)
+    public function __construct()
     {
-        // #TODO
-        $todo = $credentials;
+        $auth = new Auth();
+        $auth->init();
     }
 
-    /**
-     * @param int $teamId
-     * @return string[]<string, string>
-     */
-    public function getGames(int $teamId) : array
+    public function getGames() : array
     {
-        return ['Name' => 'Test'];
+        $schedule = new Schedule();
+        return json_decode($schedule->getMatches(), true);
     }
 
 }

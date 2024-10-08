@@ -13,7 +13,12 @@ class Config
 
     public static function init($basePath) : void
     {
-        self::$config = json_decode(file_get_contents($basePath . '/config/config.json'), true);
+        if (file_exists($basePath . '/config/config.json')) {
+            self::$config = json_decode(file_get_contents($basePath . '/config/config.json'), true);
+        } else {
+            self::$config = [];
+        }
+
     }
 
     public static function set(string $section, string $key, string $value) : void

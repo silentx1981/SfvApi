@@ -3,6 +3,7 @@
 namespace test;
 
 use PHPUnit\Framework\TestCase;
+use SfvApi\ClubSchedule\Dto\GamesDto;
 use SfvApi\Sfv;
 
 class svfTest extends TestCase
@@ -10,6 +11,7 @@ class svfTest extends TestCase
     public function testGetGames()
     {
         $sfv = new Sfv(['username' => 'hallo']);
-        $this->assertEquals('Test', $sfv->getGames(1), 'Value "Test" does not exist');
+        $expected = new GamesDto([]);
+        $this->assertEquals($expected, $sfv->getGames(), 'Value "Test" does not exist');
     }
 }

@@ -1,20 +1,20 @@
 <?php
 
-namespace SfvApi\ClubSchedule;
+namespace SfvApi\ClubSchedule\Service;
 
 use SfvApi\Config\Config;
 use SfvApi\Http\ApiClient;
 
-class Schedule
+class GameService
 {
     private $apiUrl;
 
     public function __construct()
     {
-        $this->apiUrl = Config::get('sfvApiCredentials', 'url').'/api/club/schedule';
+        $this->apiUrl = Config::get('sfvApiCredentials', 'url').'/api/match/';
     }
 
-    public function getMatches()
+    public function getGame(int $gameId) : bool|string
     {
         $client = new ApiClient();
 
@@ -23,6 +23,6 @@ class Schedule
             'ClubId' => Config::get('sfvApiInfos', 'clubid'),
         );
 
-        return $client->get($this->apiUrl, $data);
+        return $client->get($this->apiUrl.$gameId, $data);
     }
 }

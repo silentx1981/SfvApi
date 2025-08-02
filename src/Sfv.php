@@ -3,8 +3,9 @@
 namespace SfvApi;
 
 use SfvApi\Auth\Auth;
-use SfvApi\ClubSchedule\Ranking;
-use SfvApi\ClubSchedule\Schedule;
+use SfvApi\ClubSchedule\Dto\GamesDto;
+use SfvApi\ClubSchedule\Service\RankingService;
+use SfvApi\ClubSchedule\Service\GamesService;
 
 class Sfv
 {
@@ -14,15 +15,18 @@ class Sfv
         $auth->init();
     }
 
-    public function getGames() : array
+    /**
+     * @return GamesDto
+     */
+    public function getGames() : GamesDto
     {
-        $schedule = new Schedule();
-        return json_decode($schedule->getMatches(), true);
+        $games = new GamesService();
+        return $games->getAll(true);
     }
 
     public function getRanking($leagueId) : array
     {
-        $ranking = new Ranking();
+        $ranking = new RankingService();
         return json_decode($ranking->getRanking($leagueId), true);
     }
 

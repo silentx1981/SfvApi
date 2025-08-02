@@ -4,14 +4,14 @@ namespace SfvApi\Config;
 
 class Config
 {
-    private static $config = null;
+    private static array|null $config = null;
 
     public static function get(string $section, ?string $key = null) : string|array|null
     {
         return self::$config[$section][$key] ?? null;
     }
 
-    public static function init($basePath) : void
+    public static function init(string $basePath) : void
     {
         if (file_exists($basePath . '/config/config.json')) {
             self::$config = json_decode(file_get_contents($basePath . '/config/config.json'), true);

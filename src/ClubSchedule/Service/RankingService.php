@@ -1,11 +1,11 @@
 <?php
 
-namespace SfvApi\ClubSchedule;
+namespace SfvApi\ClubSchedule\Service;
 
 use SfvApi\Config\Config;
 use SfvApi\Http\ApiClient;
 
-class Ranking
+class RankingService
 {
     private $apiUrl;
 
@@ -14,7 +14,7 @@ class Ranking
         $this->apiUrl = Config::get('sfvApiCredentials', 'url').'/api/club/ranking';
     }
 
-    public function getRanking(int $leagueId)
+    public function getRanking(int $leagueId) : bool|string
     {
         $client = new ApiClient();
 

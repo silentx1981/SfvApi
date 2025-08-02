@@ -6,7 +6,7 @@ use SfvApi\Config\Config;
 
 class ApiClient
 {
-    public function get($url, $data, $headers = [])
+    public function get(string $url, array $data, array $headers = []) : bool|string
     {
         $headers[] = 'X-User-Token: '.Config::get('sfvApiCredentials', 'token');
         $url = "{$url}?".http_build_query($data);

@@ -6,9 +6,9 @@ use SfvApi\Config\Config;
 
 class Auth
 {
-    private $apiUrl;
-    private $apiUser;
-    private $apiPass;
+    private string $apiUrl;
+    private string $apiUser;
+    private string $apiPass;
 
     public function __construct()
     {
@@ -17,13 +17,13 @@ class Auth
         $this->apiPass = Config::get('sfvApiCredentials', 'password');
     }
 
-    public function init()
+    public function init() : void
     {
         if (!Config::get('sfvApiCredentials', 'token'))
             Config::set('sfvApiCredentials', 'token', $this->getToken());
     }
 
-    private function getToken()
+    private function getToken() : bool|string
     {
         $data = array(
             'applicationKey' => $this->apiUser,

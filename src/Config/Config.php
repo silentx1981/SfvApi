@@ -6,9 +6,9 @@ class Config
 {
     private static array|null $config = null;
 
-    public static function get(string $section, ?string $key = null) : string|array|null
+    public static function get(string $section, ?string $key = null) : string|array
     {
-        return self::$config[$section][$key] ?? null;
+        return self::$config[$section][$key] ?? '';
     }
 
     public static function init(string $basePath) : void
